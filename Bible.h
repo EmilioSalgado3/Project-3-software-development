@@ -1,3 +1,13 @@
+/* Bible class function definitions
+ * Computer Science, MVNU
+ * CSC-3004 Introduction to Software Development
+ *
+ * NOTE: You may add code to this file, but do not
+ * delete any code or delete any comments.
+ *
+ * STUDENT NAME: Jesus Emilio Salgado Suarez
+ */
+
 #ifndef Bible_H
 #define Bible_H
 
