@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Shakespeare Lookup</title>
+<link rel="stylesheet" type="text/css" href="layout.css">
+<script type = "text/javascript">
+var XMLHttp;
+if(navigator.appName == "Microsoft Internet Explorer") {
+   XMLHttp = new ActiveXObject("Microsoft.XMLHTTP");
+} else {
+   XMLHttp = new XMLHttpRequest();
+}
+
+function getresponse () {
+XMLHttp.open("GET", "/class/csc3004/USER/cgi-bin/sslookupclient?"
+   + "sstring=" + document.getElementById('sstring').value, true);
+XMLHttp.onreadystatechange=function() {
+   document.getElementById('response_area').innerHTML = XMLHttp.responseText;
+}
+XMLHttp.send(null);
+}
+
+</script>
+</head>
+
+<body>
+
+<div id="container">
+  <header id="header">
+    <h1>
+      Shakespeare Word Search
+    </h1>
+  </header>
+  <nav id="navigation">
+    <ul>
+      <li><a href="..">Demos</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+  <div id="content">
+    <h2>
+      Search Shakespeare using a client server architecture and an inverted index
+    </h2>
+  </div>
+<form name="input" action="javascript: getresponse ()">
+  String to find: <input id=sstring><br>
+  <input type="submit" value="submit">
+</form>
+
+<div id="response_area">
+</div>    
+  <footer id="footer">
+    Copyright © Site name, 20XX
+  </footer>
+</div>

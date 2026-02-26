@@ -1,0 +1,33 @@
+# ============================
+# Project 3 - Part 1 Makefile
+# ============================
+
+CXX = g++
+CXXFLAGS = -Wall -std=c++11
+
+# Object files
+OBJS = Bible.o Ref.o Verse.o
+
+# Default target
+all: testreader
+
+# Build testreader program
+testreader: testreader.o $(OBJS)
+	$(CXX) $(CXXFLAGS) -o testreader testreader.o $(OBJS)
+
+# Compile class files
+Bible.o: Bible.cpp Bible.h Ref.h Verse.h
+	$(CXX) $(CXXFLAGS) -c Bible.cpp
+
+Ref.o: Ref.cpp Ref.h
+	$(CXX) $(CXXFLAGS) -c Ref.cpp
+
+Verse.o: Verse.cpp Verse.h Ref.h
+	$(CXX) $(CXXFLAGS) -c Verse.cpp
+
+testreader.o: testreader.cpp Bible.h Ref.h Verse.h
+	$(CXX) $(CXXFLAGS) -c testreader.cpp
+
+# Clean build files
+clean:
+	rm -f *.o testreader
