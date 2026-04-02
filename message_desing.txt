@@ -1,0 +1,32 @@
+Request Pipe Format:
+book:chapter:verse
+Example: 43:3:16
+
+- book, chapter, and verse are the integer values from one Ref object.
+- One request message asks for one verse.
+- Each request ends with a newline because the Fifo class uses newline as the message terminator.
+
+Reply Pipe Format:
+status|verse_text
+Example: 0|For God so loved the world, that he gave his only begotten Son...
+
+- status is the integer LookupResult value.
+- 0 = SUCCESS
+- 1 = NO_BOOK
+- 2 = NO_CHAPTER
+- 3 = NO_VERSE
+- 4 = OTHER
+- | separates the status code from the returned text.
+- verse_text contains either the verse text or an error message.
+- Each reply ends with a newline because the Fifo class uses newline as the message terminator.
+
+Multiple Verse Requests:
+- The client handles multiple verse requests by sending one request at a time.
+- If the user asks for N verses, the client sends N separate request messages.
+- After each successful lookup, the client moves to the next verse.
+- If the next verse does not exist, the client moves to the next chapter.
+- If the next chapter does not exist, the client moves to the next book.
+- The server still handles one request and returns one reply for each message.
+
+Extra Credit Features:
+- None implemented.
